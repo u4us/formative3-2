@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 
 import View from './View';
+import Project from './Project';
 
 import './App.css';
 
@@ -28,6 +29,8 @@ class  App extends Component {
   
     return (
         <div className="app">
+
+			
       
           <View viewName="home" activeView={this.state.activeView} className="color1" >
 
@@ -35,6 +38,9 @@ class  App extends Component {
             <div class="main">
               <h3>Home</h3>
               <p onClick={() => this.setActiveView('about')} >Go to about</p>
+			  <Project/>
+			  <Project/>
+			  <Project/>
             </div>
 
           </View>
@@ -69,6 +75,8 @@ class  App extends Component {
             </div>
 
           </View>
+
+		  
 
         </div>
     );
