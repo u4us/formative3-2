@@ -1,16 +1,3 @@
-<<<<<<< HEAD
-import React from 'react';
-import './App.css';
-
-class App extends React.Component{
-	render(){
-		return(
-			<div className="App">
-				
-			</div>
-		)
-	}
-=======
 import React, {Component} from 'react';
 
 import View from './View';
@@ -87,7 +74,6 @@ class  App extends Component {
 
 
 
->>>>>>> master
 }
 
 export default App;
