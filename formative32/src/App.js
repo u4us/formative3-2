@@ -36,7 +36,7 @@ class  App extends Component {
 
             <div class="header"><i onClick={() => this.setActiveView('nav')} class="fas fa-bars"></i></div>
             <div class="main">
-              <h3>Home</h3>
+              <h3>Reviews</h3>
               <p onClick={() => this.setActiveView('about')} >Go to about</p>
 			  <Project/>
 			  <Project/>
