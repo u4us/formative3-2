@@ -5,8 +5,10 @@ var Schema = mongoose.Schema;
 var ProjectSchema = new Schema(
   {
     id: Number,
-    name: String,
-    description: String,
+    flavour: String,
+    parlour: String,
+    rating: Number,
+    user: String,
   },
   { timestamps: true }
 );
