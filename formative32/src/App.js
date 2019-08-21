@@ -19,6 +19,8 @@ class  App extends Component {
     this.setState({activeView:view});
   }
 
+  
+
 
 
   render(){
@@ -39,7 +41,7 @@ class  App extends Component {
 
           <View viewName="about" activeView={this.state.activeView} className="color2" >
 
-            <div class="header"><i onClick={() => this.setActiveView('home')} class="fas fa-times"></i></div>
+            <div class="header"><i onClick={() => this.setActiveView('nav')} class="fas fa-times"></i></div>
             <div class="main">
               About
             </div>
@@ -47,7 +49,7 @@ class  App extends Component {
           </View>
           <View viewName="login" activeView={this.state.activeView} className="color3" >
 
-            <div class="header"><i onClick={() => this.setActiveView('home')} class="fas fa-times"></i></div>
+            <div class="header"><i onClick={() => this.setActiveView('nav')} class="fas fa-times"></i></div>
             <div class="main">
               Login
             </div>
@@ -55,7 +57,7 @@ class  App extends Component {
           </View>
           <View viewName="nav" activeView={this.state.activeView} className="color5" >
 
-            <div class="header"><i class="fas fa-times"></i></div>
+            <div class="header"><i class="fas fa-times" onClick={() => this.setActiveView('home')}></i></div>
             <div class="main">
 
               <ul className="menu">
