@@ -4,10 +4,10 @@ var bodyParser = require('body-parser');
 var logger = require('morgan');
 var cors = require('cors');
 
-var Project = require('./project-model');
+var Icecream = require('./icecream-model');
 
 //setup database connection
-var connectionString = 'mongodb://demo2admin:demo2password@cluster0-shard-00-00-1fbjw.mongodb.net:27017,cluster0-shard-00-01-1fbjw.mongodb.net:27017,cluster0-shard-00-02-1fbjw.mongodb.net:27017/portfolio?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true&w=majority';
+var connectionString = 'mongodb://admin:admin@cluster0-shard-00-00-ff1hv.mongodb.net:27017,cluster0-shard-00-01-ff1hv.mongodb.net:27017,cluster0-shard-00-02-ff1hv.mongodb.net:27017/icecream?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true&w=majority';
 mongoose.connect(connectionString,{ useNewUrlParser: true });
 var  db = mongoose.connection;
 db.once('open', () => console.log('Database connected'));
@@ -24,59 +24,55 @@ app.use(logger('dev'));
 //setup routes
 var router = express.Router();
 
-router.get('/testing', (req, res) => {
-  res.send('<h1>Testing is working</h1>')
-})
+router.get('/icecreams', (req, res) => {
 
-router.get('/projects', (req, res) => {
-
-	Project.find()
-	.then((projects) => {
-	    return res.json(projects);
+	Icecream.find()
+	.then((items) => {
+	    return res.json(items);
 	});
 
 })
 
-router.get('/projects/:id', (req, res) => {
+router.get('/icecreams/:id', (req, res) => {
 
-	Project.findOne({id:req.params.id})
-	.then((project) => {
-	    return res.json(project);
+	Icecream.findOne({id:req.params.id})
+	.then((items) => {
+	    return res.json(items);
 	});
 })
 
-router.post('/projects', (req, res) => {
+router.post('/icecreams', (req, res) => {
 
-	var project = new Project();
-	project.id = Date.now();
+	var icecream = new Icecream();
+	icecream.id = Date.now();
 	
 	var data = req.body;
-	Object.assign(project,data);
+	Object.assign(icecream,data);
 	
-	project.save()
-	.then((project) => {
-	  	return res.json(project);
+	icecream.save()
+	.then((items) => {
+	  	return res.json(items);
 	});
 });
 
-router.delete('/projects/:id', (req, res) => {
+router.delete('/icecreams/:id', (req, res) => {
 
-	Project.deleteOne({ id: req.params.id })
+	Icecream.deleteOne({ id: req.params.id })
 	.then(() => {
 		return res.json('deleted');
 	});
 });
 
-router.put('/projects/:id', (req, res) => {
+router.put('/icecreams/:id', (req, res) => {
 
-	Project.findOne({id:req.params.id})
-	.then((project) => {
+	Icecream.findOne({id:req.params.id})
+	.then((items) => {
 		var data = req.body;
-		Object.assign(project,data);
-		return project.save()	
+		Object.assign(items,data);
+		return items.save()	
 	})
-	.then((project) => {
-		return res.json(project);
+	.then((items) => {
+		return res.json(items);
 	});	
 
 });
