@@ -9,7 +9,6 @@ class  View extends Component {
     var newClassName = (viewName == activeView) ? 'view active '+className : 'view '+className;
 
     return (
-
       <div className={newClassName}>
         {children}
       </div>

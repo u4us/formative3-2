@@ -4,10 +4,10 @@ var bodyParser = require('body-parser');
 var logger = require('morgan');
 var cors = require('cors');
 
-var Icecream = require('./icecream-model');
+var Review = require('./review-model');
 
 //setup database connection
-var connectionString = 'mongodb://admin:admin@cluster0-shard-00-00-ff1hv.mongodb.net:27017,cluster0-shard-00-01-ff1hv.mongodb.net:27017,cluster0-shard-00-02-ff1hv.mongodb.net:27017/icecream?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true&w=majority';
+var connectionString = 'mongodb://admin:admin@cluster0-shard-00-00-ff1hv.mongodb.net:27017,cluster0-shard-00-01-ff1hv.mongodb.net:27017,cluster0-shard-00-02-ff1hv.mongodb.net:27017/review?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true&w=majority';
 mongoose.connect(connectionString,{ useNewUrlParser: true });
 var  db = mongoose.connection;
 db.once('open', () => console.log('Database connected'));
@@ -24,48 +24,48 @@ app.use(logger('dev'));
 //setup routes
 var router = express.Router();
 
-router.get('/icecreams', (req, res) => {
+router.get('/reviews', (req, res) => {
 
-	Icecream.find()
+	Review.find()
 	.then((items) => {
 	    return res.json(items);
 	});
 
 })
 
-router.get('/icecreams/:id', (req, res) => {
+router.get('/reviews/:id', (req, res) => {
 
-	Icecream.findOne({id:req.params.id})
+	Review.findOne({id:req.params.id})
 	.then((items) => {
 	    return res.json(items);
 	});
 })
 
-router.post('/icecreams', (req, res) => {
+router.post('/reviews', (req, res) => {
 
-	var icecream = new Icecream();
-	icecream.id = Date.now();
+	var review = new Review();
+	review.id = Date.now();
 	
 	var data = req.body;
-	Object.assign(icecream,data);
+	Object.assign(review,data);
 	
-	icecream.save()
+	review.save()
 	.then((items) => {
 	  	return res.json(items);
 	});
 });
 
-router.delete('/icecreams/:id', (req, res) => {
+router.delete('/reviews/:id', (req, res) => {
 
-	Icecream.deleteOne({ id: req.params.id })
+	Review.deleteOne({ id: req.params.id })
 	.then(() => {
 		return res.json('deleted');
 	});
 });
 
-router.put('/icecreams/:id', (req, res) => {
+router.put('/reviews/:id', (req, res) => {
 
-	Icecream.findOne({id:req.params.id})
+	Review.findOne({id:req.params.id})
 	.then((items) => {
 		var data = req.body;
 		Object.assign(items,data);

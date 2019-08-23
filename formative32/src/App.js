@@ -1,96 +1,122 @@
 import React, {Component} from 'react';
 import axios from 'axios'
 import View from './View';
-import Project from './Project';
+import Review from './Review';
+import AddForm from './AddForm';
+import EditForm from './EditForm';
 import './App.css';
 
 // https://github.com/u4us/formative3-2
+//
 
-var urlPrefix = 'http://localhost:3001/api'
+// var urlPrefix = 'http://localhost:3001/api'
+var urlPrefix = 'http://10.2.24.74:3001/api'
 
 class App extends Component {
   constructor(props){
-    super(props)
+    super(props);
 
     this.state = {
       activeView:'home',
-      icecreams: [
-        {
-          id: 1,
-          flavour: 'chocolate',
-          parlour: 'maccas',
-          user: 'henry',
-          rating: 4,
-        }
-      ],
+      reviews: [],
+      reviewToUpdate: null,
     };
-
   }
+
   setActiveView = (view) => {
     this.setState({activeView:view});
   }
   
-  getIcecreams = () =>{
-		axios.get(urlPrefix+'/icecreams')
+  getReviews = () =>{
+		axios.get(urlPrefix+'/reviews')
 		.then(res=>{
 			console.log(res);
-			this.setState({icecreams:res.data})
+			this.setState({reviews:res.data})
+		})
+  }
+
+  addReview = (data) =>{
+		axios.post(urlPrefix+'/reviews',data)
+		.then(res=>{
+			this.getReviews();
 		})
   }
   
+  deleteReview = (id) =>{
+		axios.delete(urlPrefix+'/reviews/'+id)
+		.then(res=>{
+			this.getReviews();
+		})
+  }
+  
+  updateReview = (id, data) =>{
+		axios.put(urlPrefix+'/reviews/'+id,data)
+		.then(res=>{
+			this.getReviews();
+		})
+  }
+  
+  setReviewToUpdate = (id) =>{
+		var review = this.state.reviews.find((review)=>{
+			return review.id === id;
+		});
+		this.setState({reviewToUpdate: review});
+	}
+  
   componentDidMount(){
-    this.getIcecreams();
+    this.getReviews();
   }
 
   render(){
     return (
         <div className="app">
+
           <View viewName="home" activeView={this.state.activeView} className="color1" >
-            <div className="header "><div className="navbar"><i onClick={() => this.setActiveView('nav')} className="fas fa-bars"></i></div><h2>Rate your Ice Cream</h2><div className="navadd"><div className="addIcecream" onClick={() => this.setActiveView('add-project')} ><img src="add-icecream.png" alt="icecream" class="icecream" /></div></div></div>
+            <div className="header "><div className="navbar"><i onClick={() => this.setActiveView('nav')} className="fas fa-bars"></i></div><h2>Rate your Ice Cream</h2><div className="navadd"><div className="addIcecream" onClick={() => this.setActiveView('add-review')} ><img src="add-icecream.png" alt="icecream" class="icecream" /></div></div></div>
             <div className="main">
               <h3>Home</h3>
               <p onClick={() => this.setActiveView('about')} >Go to about</p>
               {
-                this.state.icecreams.map((icecreams)=>{
-                  var icecreamProps = {
-                    ...icecreams,
-                    key: icecreams.id,
+                this.state.reviews.map((reviews)=>{
+                  var reviewProps = {
+                    ...reviews,
+                    key: reviews.id,
+                    deleteReview: this.deleteReview,
+                    setActiveView: this.setActiveView,
+                    setReviewToUpdate: this.setReviewToUpdate,
+
                   }
-                  return(<Project {...icecreamProps}/>)
+                  return(<Review {...reviewProps}/>)
                 })
               }
             </div>
           </View>
 
-          <View viewName="about" activeView={this.state.activeView} className="color2" >
-
+          <View viewName="add-review" activeView={this.state.activeView} className="color2" >
             <div className="header"><i onClick={() => this.setActiveView('nav')} className="fas fa-times"></i></div>
             <div className="main">
-              About
+              Add Review
+              <AddForm addReview={this.addReview} setActiveView={this.setActiveView}/>
             </div>
-
           </View>
-          <View viewName="login" activeView={this.state.activeView} className="color3" >
 
+          <View viewName="edit-review" activeView={this.state.activeView} className="color3" >
             <div className="header"><i onClick={() => this.setActiveView('nav')} className="fas fa-times"></i></div>
             <div className="main">
-              Login
+              Edit Review
+              <EditForm {...this.state.reviewToUpdate} updateReview={this.updateReview} setActiveView={this.setActiveView}/>
             </div>
-
           </View>
-          <View viewName="nav" activeView={this.state.activeView} className="color5" >
 
+          <View viewName="nav" activeView={this.state.activeView} className="color4" >
             <div className="header"><i className="fas fa-times" onClick={() => this.setActiveView('home')}></i></div>
             <div className="main">
-
               <ul className="menu">
                 <li><a onClick={() => this.setActiveView('home')} className="color1" href="#">Home</a></li>
                 <li><a onClick={() => this.setActiveView('about')} className="color2" href="#">About</a></li>
                 <li><a onClick={() => this.setActiveView('login')} className="color3" href="#">Login</a></li>
               </ul>
-
             </div>
-
           </View>
         </div>
     );
