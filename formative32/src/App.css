@@ -22,7 +22,16 @@ body{
 	font-family: 'Montserrat', sans-serif;
 }
 
+.drips img {
+    width: 20em;
+}
 
+.drips {
+    position: absolute;
+    z-index: 1;
+    left: 1em;
+    top: 5em;
+}
 
 /*stacking views*/
 .app{
@@ -31,7 +40,7 @@ body{
 }
 
 
-.card.project {
+.card.review {
     display: flex;
     justify-content: space-between;
     flex-direction: column;
@@ -39,7 +48,7 @@ body{
     flex: 0 0 25%;
     margin-left: 1em;
 	margin-top: 1em;
-	max-height: 30em;
+	max-height: 40em;
 }
 
 .icecreamimage {
@@ -49,29 +58,30 @@ body{
 	margin-right:1em;
 }
 
-.addIcecream img {
-	width: 4em;
-	
-}
-
 .icecream {
     width: 12em;
     margin: 0 10px;
 }
 
 
+.addIcecream img {
+	width: 3em;
+	
+}
+
+
 .view{
 	min-height: 100vh;
-	display: none !important;
+	/* display: none !important; */
 }
 
 i {
 	cursor:pointer;
 }
 
-.active{
+/* .active{
 	display: flex !important;
-}
+} */
 
 
 /*layout in each view*/
@@ -84,27 +94,15 @@ i {
 .header{
 	text-align: right;
 	padding:1em;
-	height: 8em;
+	height: 5em;
 	align-items: center;
-	background-color: #333;
+	background-color: rgb(51, 51, 51);
 	color:white;
 	transition: ease-in;
 	text-align: center;
 	display:flex;
 	justify-content: space-between;
-
-	/* sticky header */
-	/* overflow: hidden;
-	position: fixed;
-	top: 0;
-	width: 100%;
-	z-index: 1; */
-
-	/* sticky header shadow background */
-	/* -webkit-box-shadow: 0px 0px 27px -13px rgba(0,0,0,0.75);
-	-moz-box-shadow: 0px 0px 27px -13px rgba(0,0,0,0.75);
-	box-shadow: 0px 0px 27px -13px rgba(0,0,0,0.75); */
-
+	margin-bottom: 2em;
 }
 
 .navbar {
@@ -144,19 +142,14 @@ i {
     color: #da9053;
 }
 
-/* .sticky {
-	position: fixed;
-	top: 0;
-	width: 100%;
-} */
 
-/*projects*/
-.project{
+/*reviews*/
+.review{
 	margin-bottom: 1em;
 	background-color: rgba(216, 186, 203, 1);
 }
 
-.project i{
+.review i{
   margin-right:1em;
 }
 
@@ -165,7 +158,7 @@ i {
 }
 
 .card {
-	background-color: rgb(255, 255, 255);
+	background-color: rgba(175, 212, 216, 1);
 }
 
 @media only screen and (max-width: 800px) {
@@ -173,7 +166,7 @@ i {
 		flex-direction: column;
 	}
 
-	.card.project {
+	.card.review {
 		margin: 1em;	
 		max-height: initial;
 	}
