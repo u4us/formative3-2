@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 // this will be our data base's data structure 
-var ProjectSchema = new Schema(
+var ReviewSchema = new Schema(
   {
     id: Number,
     flavour: String,
@@ -14,4 +14,4 @@ var ProjectSchema = new Schema(
 );
 
 // export the new Schema so we could modify it using Node.js
-module.exports = mongoose.model('User', ProjectSchema);
+module.exports = mongoose.model('Review', ReviewSchema);
