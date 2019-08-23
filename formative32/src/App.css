@@ -54,6 +54,11 @@ body{
 	
 }
 
+.icecream {
+    width: 12em;
+    margin: 0 10px;
+}
+
 
 .view{
 	min-height: 100vh;
@@ -87,6 +92,19 @@ i {
 	text-align: center;
 	display:flex;
 	justify-content: space-between;
+
+	/* sticky header */
+	/* overflow: hidden;
+	position: fixed;
+	top: 0;
+	width: 100%;
+	z-index: 1; */
+
+	/* sticky header shadow background */
+	/* -webkit-box-shadow: 0px 0px 27px -13px rgba(0,0,0,0.75);
+	-moz-box-shadow: 0px 0px 27px -13px rgba(0,0,0,0.75);
+	box-shadow: 0px 0px 27px -13px rgba(0,0,0,0.75); */
+
 }
 
 .navbar {
@@ -126,6 +144,11 @@ i {
     color: #da9053;
 }
 
+/* .sticky {
+	position: fixed;
+	top: 0;
+	width: 100%;
+} */
 
 /*projects*/
 .project{

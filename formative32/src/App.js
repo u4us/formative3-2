@@ -46,7 +46,9 @@ class App extends Component {
     return (
         <div className="app">
           <View viewName="home" activeView={this.state.activeView} className="color1" >
-            <div className="header "><div className="navbar"><i onClick={() => this.setActiveView('nav')} className="fas fa-bars"></i></div><h2>Rate your Ice Cream</h2><div className="navadd"><div className="addIcecream" onClick={() => this.setActiveView('add-project')} ><img src="add-icecream.png" alt="icecream" class="icecream" /></div></div></div>
+            <div className="header"><div className="navbar"><i onClick={() => this.setActiveView('nav')} className="fas fa-bars"></i></div>
+            <img className="icecream"src="Icecreamer.png"></img>
+            <div className="navadd"><div className="addIcecream" onClick={() => this.setActiveView('add-project')} ><img src="add-icecream.png" alt="icecream" class="icecream" /></div></div></div>
             <div className="main">
               <h3>Home</h3>
               <p onClick={() => this.setActiveView('about')} >Go to about</p>
