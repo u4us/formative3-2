@@ -73,13 +73,13 @@ class App extends Component {
 
           <View viewName="home" activeView={this.state.activeView} className="color1" >
             <div className="header"><div className="navbar">
-              {/* <i onClick={() => this.setActiveView('nav')} className="fas fa-bars"></i> */}
+              <i onClick={() => this.setActiveView('nav')} className="fas fa-bars"></i>
               </div>
             <img className="icecream"src="Icecreamer.png"></img>
             <div className="navadd"><div className="addIcecream" onClick={() => this.setActiveView('add-project')} ><img src="add-icecream.png" alt="icecream" class="icecream" /></div></div></div>
             <div className="main">
             <div className="drips"><img src="chocolate-drops.png" alt=""/></div>
-              <p onClick={() => this.setActiveView('about')} ></p>
+              {/* <p onClick={() => this.setActiveView('about')} ></p> */}
               {
                 this.state.reviews.map((reviews)=>{
                   var reviewProps = {
