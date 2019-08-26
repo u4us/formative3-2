@@ -7,10 +7,11 @@ import EditForm from './EditForm';
 import './App.css';
 
 // https://github.com/u4us/formative3-2
-//
+// add/edit w/modals,
+// tabs for sort by chocolate
 
-// var urlPrefix = 'http://localhost:3001/api'
-var urlPrefix = 'http://10.2.24.74:3001/api'
+var urlPrefix = 'http://localhost:3001/api'
+// var urlPrefix = 'http://10.2.24.74:3001/api'
 
 class App extends Component {
   constructor(props){
@@ -98,7 +99,7 @@ class App extends Component {
           </View>
 
           <View viewName="add-review" activeView={this.state.activeView} className="color2" >
-            <div className="header"><i onClick={() => this.setActiveView('nav')} className="fas fa-times"></i></div>
+            <div className="header"><i onClick={() => this.setActiveView('home')} className="fas fa-times"></i></div>
             <div className="main">
               Add Review
               <AddForm addReview={this.addReview} setActiveView={this.setActiveView}/>
@@ -106,7 +107,7 @@ class App extends Component {
           </View>
 
           <View viewName="edit-review" activeView={this.state.activeView} className="color3" >
-            <div className="header"><i onClick={() => this.setActiveView('nav')} className="fas fa-times"></i></div>
+            <div className="header"><i onClick={() => this.setActiveView('home')} className="fas fa-times"></i></div>
             <div className="main">
               Edit Review
               <EditForm {...this.state.reviewToUpdate} updateReview={this.updateReview} setActiveView={this.setActiveView}/>
