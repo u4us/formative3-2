@@ -66,18 +66,19 @@ class EditForm extends React.Component{
                     <input type="text" className="form-control" name="description-input" id="description-input" defaultValue={flavour}/>
                 </div> */}
 
-                <div className="form-group">
+                {/* <div className="form-group">
                     <label htmlFor="photo-input">Photo</label>
                     <input type="text" className="form-control" name="photo-input" id="photo-input" />
-                </div>
-                <div className="form-group">
+                </div> */}
+
+                {/* <div className="form-group">
                     <label htmlFor="type-input">Type</label>
                     <select className="form-control" name="type-input" id="type-input">
                     <option value="1">Painting</option>
                     <option value="2">Sculpture</option>
                     <option value="3">Digital</option>
                     </select>
-                </div>
+                </div> */}
 
                 <button type="submit" className="btn btn-primary">Update</button>
             </form>

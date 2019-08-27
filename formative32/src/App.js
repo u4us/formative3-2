@@ -10,8 +10,8 @@ import './App.css';
 // add/edit w/modals,
 // tabs for sort by chocolate
 
-var urlPrefix = 'http://localhost:3001/api'
-// var urlPrefix = 'http://10.2.24.74:3001/api'
+// var urlPrefix = 'http://localhost:3001/api'
+var urlPrefix = 'http://10.2.24.60:3001/api'
 
 class App extends Component {
   constructor(props){
@@ -78,7 +78,7 @@ class App extends Component {
               <i onClick={() => this.setActiveView('nav')} className="fas fa-bars"></i>
               </div> */}
             <img className="icecream"src="Icecreamer.png"></img>
-            <div className="navadd"><div className="addIcecream" onClick={() => this.setActiveView('add-project')} ><img src="add-icecream.png" alt="icecream" class="icecream" /></div></div></div>
+            <div className="navadd"><div className="addIcecream" onClick={() => this.setActiveView('add-review')} ><img src="add-icecream.png" alt="icecream" class="icecream" /></div></div></div>
             <div className="main">
             <div className="drips"><img src="chocolate-drops.png" alt=""/></div>
               {/* <p onClick={() => this.setActiveView('about')} ></p> */}
@@ -101,7 +101,7 @@ class App extends Component {
           <View viewName="add-review" activeView={this.state.activeView} className="color2" >
             <div className="header"><i onClick={() => this.setActiveView('home')} className="fas fa-times"></i></div>
             <div className="main">
-              Add Review
+              <h3>Add Review</h3>
               <AddForm addReview={this.addReview} setActiveView={this.setActiveView}/>
             </div>
           </View>
@@ -109,7 +109,7 @@ class App extends Component {
           <View viewName="edit-review" activeView={this.state.activeView} className="color3" >
             <div className="header"><i onClick={() => this.setActiveView('home')} className="fas fa-times"></i></div>
             <div className="main">
-              Edit Review
+            <h3>Edit Review</h3>
               <EditForm {...this.state.reviewToUpdate} updateReview={this.updateReview} setActiveView={this.setActiveView}/>
             </div>
           </View>

@@ -40,7 +40,7 @@ class AddForm extends React.Component{
                 </div>
 
                 <div className="form-group">
-                    <label htmlFor="rating-input">Type</label>
+                    <label htmlFor="rating-input">Rating</label>
                     <select className="form-control" name="rating-input" id="rating-input">
                     <option value="1">1</option>
                     <option value="2">2</option>
@@ -55,19 +55,19 @@ class AddForm extends React.Component{
                     </select>
                 </div>
 
-                <div className="form-group">
+                {/* <div className="form-group">
                     <label htmlFor="photo-input">Photo</label>
                     <input type="text" className="form-control" name="photo-input" id="photo-input" value="project.jpg"/>
-                </div>
+                </div> */}
 
-                <div className="form-group">
+                {/* <div className="form-group">
                     <label htmlFor="type-input">Type</label>
                     <select className="form-control" name="type-input" id="type-input">
                     <option value="1">Painting</option>
                     <option value="2">Sculpture</option>
                     <option value="3">Digital</option>
                     </select>
-                </div>
+                </div> */}
 
                 <button type="submit" className="btn btn-primary">Add</button>
             </form>
