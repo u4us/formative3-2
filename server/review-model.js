@@ -9,6 +9,7 @@ var ReviewSchema = new Schema(
     parlour: String,
     rating: Number,
     user: String,
+    photo: String
   },
   { timestamps: true }
 );

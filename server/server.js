@@ -3,8 +3,9 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var logger = require('morgan');
 var cors = require('cors');
-
 var Review = require('./review-model');
+var fileUpload = require('express-fileupload');
+
 
 //setup database connection
 var connectionString = 'mongodb://admin:admin@cluster0-shard-00-00-ff1hv.mongodb.net:27017,cluster0-shard-00-01-ff1hv.mongodb.net:27017,cluster0-shard-00-02-ff1hv.mongodb.net:27017/review?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true&w=majority';
@@ -20,9 +21,22 @@ app.use(cors());
 app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 app.use(logger('dev'));
+app.use(express.static('public'));
+app.use((fileUpload()));
 
 //setup routes
 var router = express.Router();
+
+router.post('/upload',(req,res)=>{
+	var files = Object.values(req.files);
+	var uploadedFile = files[0];
+	console.log(uploadedFile);
+	var newName = Date.now()+uploadedFile.name;
+	uploadedFile.mv('public/'+newName, function(){
+		res.send(newName);
+	});
+	return res.json(files);
+});
 
 router.get('/reviews', (req, res) => {
 

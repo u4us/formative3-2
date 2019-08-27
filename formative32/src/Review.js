@@ -1,6 +1,8 @@
 import React from 'react';
 import './App.css';
 
+var serverUrl = 'http://10.2.24.60:3001/';
+
 class Review extends React.Component{
 	constructor(props){
 		super(props);
@@ -18,14 +20,16 @@ class Review extends React.Component{
 	}
 
 	render(){
+
+		var {parlour, flavour, rating, user, photo} = this.props;
 		return(
 			<div className="card project">
-				<img className="card-img-top" src="pic1.jpg" alt="Card image cap" />
+				<img className="card-img-top" src={serverUrl+photo} alt="Card image cap" />
 				<div className="card-body">
-					<h5 className="card-title">{this.props.parlour}</h5>
-					<p className="card-text">Flavour: {this.props.flavour}</p>
-					<p className="card-text">Rating: {this.props.rating}</p>
-					<p className="card-text">Author: {this.props.user}</p>
+					<h5 className="card-title">{parlour}</h5>
+					<p className="card-text">Flavour: {flavour}</p>
+					<p className="card-text">Rating: {rating}</p>
+					<p className="card-text">Author: {user}</p>
 					<p>
 						{/* <i className="fas fa-heart"></i> */}
 						<i onClick={this.handleEditClick} className="fas fa-edit"></i>
