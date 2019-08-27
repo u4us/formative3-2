@@ -24,6 +24,11 @@ class App extends Component {
     };
   }
 
+  uploadFile = (formData) =>{
+		var setting = { headers: {'Content-Type': 'multipart/form-data' }};
+		return axios.post(urlPrefix+'/upload', formData, setting)
+	}
+
   setActiveView = (view) => {
     this.setState({activeView:view});
   }
@@ -102,7 +107,7 @@ class App extends Component {
             <div className="header"><i onClick={() => this.setActiveView('home')} className="fas fa-times"></i></div>
             <div className="main">
               <h3>Add Review</h3>
-              <AddForm addReview={this.addReview} setActiveView={this.setActiveView}/>
+              <AddForm uploadFile={this.uploadFile} addReview={this.addReview} setActiveView={this.setActiveView}/>
             </div>
           </View>
 

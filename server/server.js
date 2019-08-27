@@ -35,7 +35,7 @@ router.post('/upload',(req,res)=>{
 	uploadedFile.mv('public/'+newName, function(){
 		res.send(newName);
 	});
-	return res.json(files);
+	// return res.json(files);
 });
 
 router.get('/reviews', (req, res) => {

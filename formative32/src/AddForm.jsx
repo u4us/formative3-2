@@ -7,17 +7,23 @@ class AddForm extends React.Component{
 
     handleFormSubmit = (e) =>{
         e.preventDefault();
+
+        var {uploadFile, addReview, setActiveView} = this.props;
         var formData = new FormData(this.form);
 
-        var data = {
-            user: formData.get('user-input'),
-            parlour: formData.get('parlour-input'),
-            flavour: formData.get('flavour-input'),
-            rating: formData.get('rating-input'),
-        };
-        console.log(data);
-        this.props.addReview(data);
-        this.props.setActiveView('home');
+        uploadFile(formData).then(res=>{
+            var fileName = res.data;
+
+            var data = {
+                user: formData.get('user-input'),
+                parlour: formData.get('parlour-input'),
+                flavour: formData.get('flavour-input'),
+                rating: formData.get('rating-input'),
+                photo: fileName,
+            };
+            addReview(data);
+            setActiveView('home');
+        });
     }
 
 	render(){
@@ -55,10 +61,10 @@ class AddForm extends React.Component{
                     </select>
                 </div>
 
-                {/* <div className="form-group">
+                <div className="form-group">
                     <label htmlFor="photo-input">Photo</label>
-                    <input type="text" className="form-control" name="photo-input" id="photo-input" value="project.jpg"/>
-                </div> */}
+                    <input type="file" className="form-control" name="photo-input" id="photo-input"/>
+                </div>
 
                 {/* <div className="form-group">
                     <label htmlFor="type-input">Type</label>
